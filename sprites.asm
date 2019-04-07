@@ -96,9 +96,9 @@ invisible:
 ; ----------------------------------------------------------------
 
 ; x - xmap < -32      ; 28 clocks
-; -32 <= x - xmap < 0 ; 109 clocks
-; 0 <= x - xmap < 256 ; 125 clocks
-; x - xmap >= 256     ; 81 clocks 
+; -32 <= x - xmap < 0 ; 106 clocks
+; 0 <= x - xmap < 256 ; 114 clocks
+; x - xmap >= 256     ; 80 clocks 
 
 refac:
 	ld	de,(tempx)
@@ -111,13 +111,12 @@ refac:
   ld  e, a ; 5 
   ld  a, h ; 5 
   sbc a, 0 ; 8
-  jp  c, skip ; 11
-  jp  nz, invisible1 ; 11
+  jr  c, has_ec1 ; 13/8
+  jr  nz, invisible1 ; 13/8
 
   ld  l, e ; 5
 
-skip:
-  sbc a,a ; 5
+has_ec1:
   and 128 ; 8
   or (ix+enemy_data_color) ; 21
   ld  e, a ; 5
