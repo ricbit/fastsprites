@@ -1,3 +1,4 @@
+make_original equ 0
 ; Fast sprites unit tests
 ; by Ricardo Bittencourt 2019
 
@@ -35,11 +36,12 @@ loop:
     out  (openmsx_data), a
 
     or   a
-    if  original=1
-    call      original
+
+    if  make_original=1
+      call original
     else
-    call refac
-    end
+      call refac
+    endif
 
     out  (openmsx_data), a
     ld   a, l
