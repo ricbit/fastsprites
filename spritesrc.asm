@@ -1,4 +1,3 @@
-make_original equ 0
 ; Fast sprites unit tests
 ; by Ricardo Bittencourt 2019
 
